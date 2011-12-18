@@ -8,7 +8,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 
 /**
- * 
+ *
  * @goal merge-batch
  * @requiresProject false
  * @description
@@ -16,43 +16,43 @@ import org.apache.maven.project.MavenProject;
 public class StringsMergerBatchMojo extends AbstractMojo {
 	/**
      * The maven project.
-     * 
+     *
      * @parameter expression="${project}"
      * @required
      * @readonly
      */
     private MavenProject project;
-    
+
     /**
      * Strings input
-     * 
+     *
      * @parameter expression = "${inputFile}"
-     * @required 
+     * @required
      */
     private File inputFile;
 
     /**
      * Strings input directory with files to merge to
-     * 
+     *
      * @parameter expression = "${inputDir}"
      * @required
      */
     private File inputDir;
-    
+
     /**
      * Po output directory
-     * 
+     *
      * @parameter expression = "${outputDir}"
      * @required
      */
-    private File outputDir;    
-    
+    private File outputDir;
+
     /**
-     * 
+     *
      * @parameter expression = "${removeEmptyEntries}" default-value="true"
      */
-    private boolean removeEmptyEntries;      
-    
+    private boolean removeEmptyEntries;
+
     public void execute()
     	throws MojoExecutionException, MojoFailureException
     {
@@ -60,7 +60,7 @@ public class StringsMergerBatchMojo extends AbstractMojo {
     	{
     		outputDir.mkdirs();
     	}
-    	
+
     	StringsMerger merger = new StringsMerger(this.getLog());
     	for(File inputFileB : inputDir.listFiles())
     	{
@@ -72,12 +72,12 @@ public class StringsMergerBatchMojo extends AbstractMojo {
 				} catch (Exception e) {
 					this.getLog().info("Unable to process file = " + inputFileB.getAbsolutePath());
 					e.printStackTrace();
-				}   	   			
+				}
     		}
     	}
     	//Create master
 		File outputFile = new File(outputDir, inputFile.getName() + ".po");
-		merger.mergeFiles(inputFile, inputFile, outputFile, project, removeEmptyEntries);   	
+		merger.mergeFiles(inputFile, inputFile, outputFile, project, removeEmptyEntries);
 
     }
 }

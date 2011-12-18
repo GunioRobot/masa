@@ -35,7 +35,7 @@ public class PoPackagerMojo extends AbstractMojo {
 
 	/**
 	 * The maven project.
-	 * 
+	 *
 	 * @parameter expression="${project}"
 	 * @required
 	 * @readonly
@@ -44,7 +44,7 @@ public class PoPackagerMojo extends AbstractMojo {
 
 	/**
 	 * Input directory
-	 * 
+	 *
 	 * @parameter expression = "${inputDirectory}"
 	 *            default-value="${project.build.directory}/po"
 	 * @required
@@ -53,7 +53,7 @@ public class PoPackagerMojo extends AbstractMojo {
 
 	/**
 	 * Classifier
-	 * 
+	 *
 	 * @parameter expression = "${classifier}"
 	 */
 	private String classifier;

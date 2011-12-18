@@ -16,7 +16,7 @@ public class MavenITmasa33StringsMergingTest  extends AbstractMavenIntegrationTe
 
     /**
      * Tests packaging into pozip
-     * 
+     *
      * @throws Exception
      */
     public void testit()
@@ -28,7 +28,7 @@ public class MavenITmasa33StringsMergingTest  extends AbstractMavenIntegrationTe
         options.add("-DinputFileA=strings-en.xml");
         options.add("-DinputFileB=strings-fr.xml");
         options.add("-DoutputFile=strings.po");
-        
+
         Map<String, String> map = new HashMap<String, String>();
         map.put("inputFileA", "strings-en.xml");
         map.put("inputFileB", "strings-fr.xml");
@@ -41,7 +41,7 @@ public class MavenITmasa33StringsMergingTest  extends AbstractMavenIntegrationTe
         verifier.resetStreams();
         verifier.assertFilePresent( "strings.po" );
     //    verifier.assertFilePresent( "target/processed-resources/values/config.xml" );
-        
+
         //Contents
         //verifier.verify(FileUtils.contentEquals(new File("localized-resources/res-development"), new File("res/values/config.xml")));
     }

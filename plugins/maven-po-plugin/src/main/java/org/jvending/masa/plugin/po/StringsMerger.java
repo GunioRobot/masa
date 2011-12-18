@@ -13,14 +13,14 @@ import org.jvending.masa.plugin.po.parser.PoEntry;
 import org.jvending.masa.plugin.po.parser.PoParser;
 
 public class StringsMerger {
-	
+
 	private Log log;
-	
+
 	public StringsMerger(Log log)
 	{
 		this.log = log;
 	}
-	
+
     public void mergeFiles(File inputFileA, File inputFileB, File outputFile, MavenProject project, boolean removeEmptyValues )
 	    throws MojoExecutionException, MojoFailureException
 	{
@@ -32,23 +32,23 @@ public class StringsMerger {
 		} catch (IOException e) {
 			throw new MojoExecutionException("", e);
 		}
-	
+
 		List<PoEntry> entriesA;
 		List<PoEntry> entriesB;
 		try {
 			String encodingA = PoTransformer.createTemplateFromStringsXml(inputFileA, a, project);//TODO: optimize for batch processing
 	    	String encodingB = PoTransformer.createTemplateFromStringsXml(inputFileB, b, project);
-	
+
 			entriesA = PoParser.readEntries( new FileInputStream( a ), encodingA);
 			entriesB = PoParser.readEntries( new FileInputStream( b ), encodingB );
 			log.info("Merging files: A = " +  a.getName() + ", B = " + b.getName() + ", Output = " + outputFile.getName());
-	    	merge(entriesA, entriesB);    
+	    	merge(entriesA, entriesB);
 	    	PoTransformer.writePoFile(entriesA, outputFile, encodingB, true);
 		} catch (IOException e) {
 			throw new MojoExecutionException("", e);
 		}
 	}
-	
+
 	private void merge(List<PoEntry> entriesA, List<PoEntry> entriesB)
 	{
 		double x =0, y = 0;
@@ -67,12 +67,12 @@ public class StringsMerger {
 					this.log.info("Missing translation: Context = " + a.message.messageContext);
 			}
 		}
-	
+
 		int total = (int) (x + y);
 		double p = x/total;
 		this.log.info("Translation: Total =  " + total + ", % Translated = "  + p);
 	}
-	
+
 	private String getMessageIdFrom(List<PoEntry> entries, String messageContext)
 	{
 		for(PoEntry po : entries)
@@ -81,7 +81,7 @@ public class StringsMerger {
 			{
 				continue;
 			}
-			
+
 			if(po.message.messageContext.equals(messageContext))
 			{
 				return po.message.messageId;

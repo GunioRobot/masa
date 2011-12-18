@@ -29,60 +29,60 @@ import java.util.List;
 /**
  *
  * @goal copy
- * 
+ *
  */
 public class CopyResourcesMojo
     extends AbstractMojo
 {
-    
+
     /**
      * The maven project.
-     * 
+     *
      * @parameter expression="${project}"
      */
     public MavenProject project;
 
     /**
      * Location of the localized resources
-     * 
-     * @parameter default-value="${project.basedir}/localized-resources" 
+     *
+     * @parameter default-value="${project.basedir}/localized-resources"
      */
-    private File resourcesDirectory;    
-    
+    private File resourcesDirectory;
+
     /**
      * Location of the output directory for the localized resources.
-     * 
+     *
      * @parameter default-value ="${project.basedir}/res"
      */
     private File outputDirectory;
-    
+
     /**
      * Locales of resources to copy
-     * 
+     *
      * @parameter
      */
-    private List<String> locales;    
+    private List<String> locales;
 
     public void execute()
         throws MojoExecutionException
     {
         if(!resourcesDirectory.exists())
         {
-            getLog().info( "No localized-resources directory found: File = " + resourcesDirectory.getAbsolutePath() ); 
+            getLog().info( "No localized-resources directory found: File = " + resourcesDirectory.getAbsolutePath() );
             return;
         }
-        
+
         if(locales == null)
         {
             getLog().info( "No localized-resources found." );
             return;
         }
-        
+
         if(project.getBuild().getResources().size() == 0)
         {
             return;
         }
-        
+
         for(String locale : locales)
         {
             File res = new File(resourcesDirectory, "res-" + locale);

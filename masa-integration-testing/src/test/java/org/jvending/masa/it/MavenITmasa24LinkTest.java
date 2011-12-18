@@ -18,7 +18,7 @@ public class MavenITmasa24LinkTest
 
     /**
      * Tests packaging into pozip
-     * 
+     *
      * @throws Exception
      */
     public void testitA()
@@ -34,5 +34,5 @@ public class MavenITmasa24LinkTest
         verifier.resetStreams();
         verifier.assertFilePresent( "target/masa-24-1.0.apk" );
     }
- 
+
 }

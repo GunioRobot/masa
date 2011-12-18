@@ -14,52 +14,52 @@ import org.jvending.masa.plugin.po.parser.PoEntry;
 import org.jvending.masa.plugin.po.parser.PoParser;
 
 /**
- * 
+ *
  * @goal merge
  * @requiresProject false
  * @description
  */
 public class StringsMergerMojo extends AbstractMojo
 {
-	
+
     /**
      * The maven project.
-     * 
+     *
      * @parameter expression="${project}"
      * @required
      * @readonly
      */
     private MavenProject project;
-    
+
     /**
      * Strings input
-     * 
+     *
      * @parameter expression = "${inputFileA}"
-     * @required 
+     * @required
      */
     private File inputFileA;
 
     /**
      * Strings input
-     * 
+     *
      * @parameter expression = "${inputFileB}"
      * @required
      */
     private File inputFileB;
-    
+
     /**
-     * 
+     *
      * @parameter expression = "${removeEmptyEntries}" default-value="true"
      */
-    private boolean removeEmptyEntries;   
-    
+    private boolean removeEmptyEntries;
+
     /**
      * Po output file
-     * 
+     *
      * @parameter expression = "${outputFile}"
      * @required
      */
-    private File outputFile;    
+    private File outputFile;
 
     public void execute()
         throws MojoExecutionException, MojoFailureException

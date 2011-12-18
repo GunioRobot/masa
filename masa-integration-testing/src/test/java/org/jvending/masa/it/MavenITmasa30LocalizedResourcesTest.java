@@ -17,7 +17,7 @@ public class MavenITmasa30LocalizedResourcesTest extends AbstractMavenIntegratio
 
     /**
      * Tests packaging into pozip
-     * 
+     *
      * @throws Exception
      */
     public void testit()
@@ -33,10 +33,10 @@ public class MavenITmasa30LocalizedResourcesTest extends AbstractMavenIntegratio
         verifier.resetStreams();
         verifier.assertFilePresent( "res/values/config.xml" );
         verifier.assertFilePresent( "target/processed-resources/values/config.xml" );
-        
+
         //Contents
         verifier.verify(FileUtils.contentEquals(new File("localized-resources/res-development"), new File("res/values/config.xml")));
     }
-    
+
 
 }

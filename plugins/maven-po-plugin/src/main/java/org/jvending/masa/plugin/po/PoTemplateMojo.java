@@ -25,7 +25,7 @@ import org.apache.maven.project.MavenProject;
 
 /**
  * Generates po template from strings.xml file.
- * 
+ *
  * @goal generate
  * @requiresProject false
  * @description
@@ -36,16 +36,16 @@ public class PoTemplateMojo
 
     /**
      * The maven project.
-     * 
+     *
      * @parameter expression="${project}"
      * @required
      * @readonly
      */
     private MavenProject project;
-    
+
     /**
      * @parameter expression = "${inputFile}" default-value="strings.xml"
-     * @required 
+     * @required
      */
     private File inputFile;
 
@@ -61,7 +61,7 @@ public class PoTemplateMojo
         try
         {
             PoTransformer.createTemplateFromStringsXml( inputFile, outputFile, project );
-        } 
+        }
         catch ( IOException e )
         {
             throw new MojoExecutionException( "", e );

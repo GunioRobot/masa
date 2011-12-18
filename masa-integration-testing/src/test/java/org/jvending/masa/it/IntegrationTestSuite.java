@@ -46,7 +46,7 @@ public class IntegrationTestSuite extends TestCase
         suite.addTestSuite( MavenITmasa30LocalizedResourcesTest.class );
         suite.addTestSuite( MavenITmasa29PoTest.class );
         */
-        
+
         /*
          * Add tests in reverse alpha order above.
          */

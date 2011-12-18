@@ -22,7 +22,7 @@ public final class NativeLibraries {
      * @parameter
      */
 	File path;
-	
+
     /**
      * @parameter
      */

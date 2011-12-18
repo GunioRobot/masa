@@ -17,7 +17,7 @@ public class MavenITmasa28bPrivateKeyCertSignTest
     }
 
     /**
-     * 
+     *
      * @throws Exception
      */
     public void testitA()
@@ -33,5 +33,5 @@ public class MavenITmasa28bPrivateKeyCertSignTest
         verifier.resetStreams();
         verifier.assertFilePresent( "target/masa-28b-1.0-signed.apk" );
     }
- 
+
 }

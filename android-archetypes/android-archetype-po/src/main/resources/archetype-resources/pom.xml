@@ -21,7 +21,7 @@
 					<!-- locale -->
 					<classifier>en</classifier>
 				</configuration>
-			</plugin>				
+			</plugin>
 		</plugins>
 	</build>
 </project>

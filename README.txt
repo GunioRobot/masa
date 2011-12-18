@@ -26,10 +26,10 @@ Add the following dependency to your project to use the Android API. This jar is
 	    <groupId>com.android</groupId>
             <artifactId>android</artifactId>
             <version>14</version>
-          </dependency>	
+          </dependency>
 	</dependencies>
 
-### Build 
+### Build
 Make sure to set the resources directory to 'res' so that the maven project is compatible with Eclipse development environment. By setting the filtering option to 'true' you can interpolate Android resources with variables. Keep in mind that while useful for automated builds, adding property placeholders to Android resource files will break the Eclipse development environment.
 
 The maven-aapt-plugin is the core masa plugin that you need to add. And don't forget to configure the output directory for processed resources with the maven-resources-plugin.
@@ -67,7 +67,7 @@ The maven-aapt-plugin is the core masa plugin that you need to add. And don't fo
 		</plugins>
 	</build>
 
-### Repository configuration 
+### Repository configuration
 The final step is to add the plugin respositories so you don't have to build masa directly. Currently, the masa plugins are deployed as snapshots (1.2-SNAPSHOT) but you can configure the location by adding the following to your pom.
 
 	<pluginRepositories>
@@ -92,5 +92,5 @@ The final step is to add the plugin respositories so you don't have to build mas
             <releases>
                 <enabled>true</enabled>
             </releases>
-	</pluginRepository>		
-    </pluginRepositories>	
+	</pluginRepository>
+    </pluginRepositories>

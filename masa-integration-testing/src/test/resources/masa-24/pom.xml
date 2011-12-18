@@ -12,7 +12,7 @@
 			<groupId>com.android</groupId>
 			<artifactId>android</artifactId>
 			<version>14</version>
-		</dependency>		
+		</dependency>
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -28,7 +28,7 @@
 				</groupId>
 				<artifactId>maven-aapt-plugin</artifactId>
 				<extensions>true</extensions>
-			</plugin>		
+			</plugin>
 			<plugin>
 				<groupId>org.jvending.masa.plugins
 				</groupId>
@@ -40,7 +40,7 @@
 						<resourceFolder>brand1</resourceFolder>
 					</resourceFolders>
 				</configuration>
-			</plugin>					
+			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<configuration>
@@ -55,7 +55,7 @@
 					<source>1.5</source>
 					<target>1.5</target>
 				</configuration>
-			</plugin>			
+			</plugin>
 		</plugins>
 	</build>
 </project>

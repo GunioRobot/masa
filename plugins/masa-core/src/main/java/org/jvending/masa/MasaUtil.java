@@ -68,7 +68,7 @@ public class MasaUtil
 	    }
 	    return null;
     }
-    
+
     public static File getAndroidJarFile( MavenProject project )
         throws MojoExecutionException
     {

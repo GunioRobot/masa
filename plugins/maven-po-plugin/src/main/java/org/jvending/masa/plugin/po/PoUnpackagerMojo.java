@@ -47,23 +47,23 @@ public class PoUnpackagerMojo
 
     /**
      * The maven project.
-     * 
+     *
      * @parameter expression="${project}"
      * @readonly
      */
     private MavenProject project;
-    
+
     /**
-     * 
+     *
      * @parameter expression="${defaultResources}"
      */
-    private ArrayList<String> defaultResources;    
+    private ArrayList<String> defaultResources;
 
     /**
      * @parameter default-value="${project.build.directory}/processed-resources"
      */
     public File resourceDirectory;
-    
+
 
     public void execute()
         throws MojoExecutionException, MojoFailureException
@@ -85,13 +85,13 @@ public class PoUnpackagerMojo
                 {
                     valuesDir.mkdirs();
                 }
-                
+
                 List<Resource> resources = project.getBuild().getResources();
                 String resourceDir = (resources.isEmpty()) ? "res" : resources.get(0).getDirectory();
-                
+
                 ZipFile zip = null;
                 try
-                { 
+                {
                     zip = new ZipFile( artifact.getFile() );
                     Enumeration<? extends ZipEntry> en = zip.entries();
                     while(en.hasMoreElements())
@@ -99,18 +99,18 @@ public class PoUnpackagerMojo
                     	ZipEntry entry  = en.nextElement();
                     	if(entry.getName().endsWith(".po")){
                     		writeWithCorrectEncoding(artifact.getFile(), entry.getName(), valuesDir, resourceDir, isClassifier);
-                    	}             	
+                    	}
                     }
                 }
                 catch ( IOException e )
                 {
                     throw new MojoExecutionException("", e);
                 }
- 
+
             }
         }
     }
-    
+
     //TODO: Needs optimization
     private void writeWithCorrectEncoding(File zipFile, String entryName, File valuesDir, String resourceDir, boolean isClassifier) throws IOException
     {
@@ -134,23 +134,23 @@ public class PoUnpackagerMojo
 				}
 				line = in.readLine();
 			}
-			
+
 			if(encoding == null)
 			{
 				encoding = System.getProperty("file.encoding");
 			}
 			File outputFile = new File( valuesDir, entryName.substring(0, entryName.lastIndexOf(".")) + ".xml" );
-			
-			PoTransformer.transformToStrings(  new ZipFile( zipFile ).getInputStream( zip.getEntry( entryName ) ) , 
+
+			PoTransformer.transformToStrings(  new ZipFile( zipFile ).getInputStream( zip.getEntry( entryName ) ) ,
 					outputFile, encoding);
 			/**
 			 * We need to copy default resources to main resource directory. Not ideal but it keeps the Android Eclipse plugin working
 			 */
 			if(isClassifier)
 			{
-				FileUtils.copyFileToDirectory(outputFile, new File(resourceDir, "values"));			
+				FileUtils.copyFileToDirectory(outputFile, new File(resourceDir, "values"));
 			}
-		} 
+		}
         finally
         {
             if(zip != null)

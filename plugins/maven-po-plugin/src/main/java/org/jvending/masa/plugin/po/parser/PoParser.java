@@ -33,10 +33,10 @@ public class PoParser
     {
         List<PoEntry> entries = new ArrayList<PoEntry>();
         InputStreamReader isr = new InputStreamReader( input, encoding );
-        
+
         BufferedReader in = new BufferedReader(isr);
         while ( true )
-        {	
+        {
                 PoEntry e = readEntry( in );
                 if ( e != null )
                 {
@@ -71,7 +71,7 @@ public class PoParser
 
         int flag = -1;
         while ( line != null )
-        {        
+        {
             if ( line.startsWith( "#" ) )// TODO: Handle headers
             {
                 flag = -1;
@@ -95,12 +95,12 @@ public class PoParser
                 		{
                 			if(!line.startsWith("msgid ") && !line.startsWith("msgstr "))
                 			{
-                    			headers.add(line);               				
+                    			headers.add(line);
                 			}
 
                 			line = reader.readLine();
                 		}
-                	}            	
+                	}
                 }
             }
             else if ( line.startsWith( "msgstr" ) )

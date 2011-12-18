@@ -17,7 +17,7 @@ public class MavenITmasa28aDebugSignTest
     }
 
     /**
-     * 
+     *
      * @throws Exception
      */
     public void testitA()
@@ -33,5 +33,5 @@ public class MavenITmasa28aDebugSignTest
         verifier.resetStreams();
         verifier.assertFilePresent( "target/masa-28a-1.0-signed-debug.apk" );
     }
- 
+
 }

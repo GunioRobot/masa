@@ -18,7 +18,7 @@ public class MavenITmasa29PoTest
 
     /**
      * Tests packaging into pozip
-     * 
+     *
      * @throws Exception
      */
     public void testitA()
@@ -34,10 +34,10 @@ public class MavenITmasa29PoTest
         verifier.resetStreams();
         verifier.assertFilePresent( "target/artifact-1.0.pozip" );
     }
-    
+
     /**
      * Tests packaging with classifiers
-     * 
+     *
      * @throws Exception
      */
     public void testitB()
@@ -52,11 +52,11 @@ public class MavenITmasa29PoTest
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
         verifier.assertFilePresent( "target/masa29b-1.0-en.pozip" );
-    }   
-    
+    }
+
     /**
      * Tests packaging with classifiers
-     * 
+     *
      * @throws Exception
      */
     public void testitC()
@@ -70,7 +70,7 @@ public class MavenITmasa29PoTest
         verifier.executeGoal( "install" );
         verifier.verifyErrorFreeLog();
         verifier.resetStreams();
-       
+
        // verifier.assertFilePresent( "target/artifact-1.0-en.pozip" );
-    }       
+    }
 }

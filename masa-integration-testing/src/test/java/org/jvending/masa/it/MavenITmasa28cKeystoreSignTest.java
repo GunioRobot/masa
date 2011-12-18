@@ -17,7 +17,7 @@ public class MavenITmasa28cKeystoreSignTest
     }
 
     /**
-     * 
+     *
      * @throws Exception
      */
     public void testitA()
@@ -33,5 +33,5 @@ public class MavenITmasa28cKeystoreSignTest
         verifier.resetStreams();
         verifier.assertFilePresent( "target/masa-28c-1.0-signed.apk" );
     }
- 
+
 }

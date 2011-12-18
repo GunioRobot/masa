@@ -12,7 +12,7 @@
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
 			<version>2.2.1</version>
-		</dependency>	
+		</dependency>
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -31,7 +31,7 @@
 				<configuration>
 					<renameManifestPackage>org.jvending.masa.rename</renameManifestPackage>
 				</configuration>
-			</plugin>			
+			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<configuration>
@@ -46,7 +46,7 @@
 					<source>1.5</source>
 					<target>1.5</target>
 				</configuration>
-			</plugin>			
+			</plugin>
 		</plugins>
 	</build>
 </project>

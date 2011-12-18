@@ -60,27 +60,27 @@ public class PoTransformer
 	        	}
 	            writer.writeStartElement( "string" );
 	            writer.writeAttribute( "name", entry.message.messageContext );
-	            if(entry.message.messageString != null) 
+	            if(entry.message.messageString != null)
 	            {
-	            	writer.writeCharacters( entry.message.messageString ); 
+	            	writer.writeCharacters( entry.message.messageString );
 	            }
-	            else 
+	            else
 	            {
 	            	writer.writeCharacters( "");
 	            }
 	            writer.writeEndElement();
 	        }
-	
+
 	        writer.writeEndElement();
 	        writer.writeEndDocument();
-	
+
 	    }
 	    catch ( XMLStreamException e )
 	    {
 	        throw new IOException( e.getMessage() );
 	    }
 	}
-	
+
     public static void transformToStrings( InputStream inputStream, File outputFile, String encoding )
     	throws IOException
 	{
@@ -88,22 +88,22 @@ public class PoTransformer
 	    {
 	        throw new IllegalArgumentException( "inputStream: null" );
 	    }
-	
+
 	    if ( outputFile == null )
 	    {
 	        throw new IllegalArgumentException( "outputFile: null" );
 	    }
-	
+
 	    List<PoEntry> entries = PoParser.readEntries( inputStream, encoding );
 	    writeEntriesToStringsFile(entries, outputFile);
 	}
-    
+
     public static void transformToStrings( File inputFile, File outputFile, String encoding )
         throws IOException
     {
         transformToStrings(new FileInputStream(inputFile), outputFile, encoding);
     }
-    
+
     private static boolean verifyHeaders(List<String> headers)
     {
     	for(String header : headers)
@@ -115,12 +115,12 @@ public class PoTransformer
     	}
     	return false;
     }
-    
+
     public static void writePoFile(List<PoEntry> entries, File outputFile, String encoding, boolean removeEmptyValues)
-    	throws IOException 
+    	throws IOException
     {
     	BufferedWriter bos = new BufferedWriter( new OutputStreamWriter( new FileOutputStream( outputFile ), encoding) );
-    	
+
     	for(PoEntry po : entries)
     	{
     		if(po.hasHeaders && verifyHeaders(po.headers))
@@ -131,38 +131,38 @@ public class PoTransformer
                 {
                 	if(!header.trim().equals(""))
                 	{
-                    	bos.write(header);    
+                    	bos.write(header);
                     	bos.write("\n");
                 	}
                 }
                 bos.write("\n");
                 continue;
-    		} 
+    		}
     		else if(removeEmptyValues && po.message.messageString.trim().equals(""))//Get rid of entries that have no value - won't be of any use for strings.xml file
     		{
     			System.out.println("Removing entry: " + po.message.messageContext);
     			continue;
     		}
-    		
+
     		if(po.message.messageContext != null)
     		{
                 bos.write( "msgctxt \"" );
                 bos.write( po.message.messageContext );
-                bos.write( "\"\n" );   			
+                bos.write( "\"\n" );
     		}
 
             bos.write( "msgid \"" );
-            if( po.message.messageId != null) 
+            if( po.message.messageId != null)
             {
             	bos.write( po.message.messageId );
             }
             bos.write( "\"\n" );
 
-            bos.write( "msgstr \"" ); 
+            bos.write( "msgstr \"" );
             if(po.message.messageString != null)
             	bos.write( po.message.messageString );
             bos.write( "\"\n" );
-            
+
             bos.write( "\n" );
     	}
     	bos.close();
@@ -190,7 +190,7 @@ public class PoTransformer
         try
         {
             xmlStreamReader = xmlInputFactory.createXMLStreamReader( new FileInputStream( inputFile ) );
-            
+
         	String encoding = xmlStreamReader.getEncoding();
             bos = new BufferedWriter( new OutputStreamWriter( new FileOutputStream( outputFile ), encoding) );
             //Headers
@@ -198,14 +198,14 @@ public class PoTransformer
             bos.write( "msgstr \"\"\n" );
             if(project != null)
             {
-            	bos.write("\"Project-Id-Version:" + project.getArtifactId() + "-" + project.getVersion() +"\"\n");	
+            	bos.write("\"Project-Id-Version:" + project.getArtifactId() + "-" + project.getVersion() +"\"\n");
             	Calendar c = Calendar.getInstance();
             	c.setTimeInMillis(System.currentTimeMillis());
-            	bos.write("\"PO-Revision-Date:" + DateFormat.getDateInstance().format(c.getTime()) +"\"\n");	
+            	bos.write("\"PO-Revision-Date:" + DateFormat.getDateInstance().format(c.getTime()) +"\"\n");
             }
             bos.write("\"Content-Type: text/plain; charset=" + encoding +"\"\n");
             bos.write( "\n" );
-            
+
             for ( ;; xmlStreamReader.next() )
             {
                 int type = xmlStreamReader.getEventType();
@@ -221,7 +221,7 @@ public class PoTransformer
 
                             xmlStreamReader.next();
                             if(xmlStreamReader.getEventType() == XMLStreamConstants.CHARACTERS)
-                            { 
+                            {
                                 String s = nodeToString(xmlStreamReader);
 
                                 bos.write( "msgid " );
@@ -233,16 +233,16 @@ public class PoTransformer
                             		{
                                         bos.write( "\"" );
                                         bos.write( line );
-                                        bos.write( "\"\n" );                       			
+                                        bos.write( "\"\n" );
                             		}
 
                                     line = reader.readLine();
                             	}
-                                bos.write( "msgstr \"\"\n\n" );    
+                                bos.write( "msgstr \"\"\n\n" );
                             }
                         }
                         break;
-                    } 
+                    }
                     case XMLStreamConstants.END_DOCUMENT:
                     {
                         return encoding;
@@ -289,7 +289,7 @@ public class PoTransformer
                    }
                    case XMLStreamConstants.END_ELEMENT:
                    {
-                	   if(xmlStreamReader.getLocalName().equals("string")) 
+                	   if(xmlStreamReader.getLocalName().equals("string"))
                 	   {
                 		   //System.out.print(b.toString());
                 		   return b.toString();
@@ -301,8 +301,8 @@ public class PoTransformer
                    {
                       b.append(xmlStreamReader.getText());
                       break;
-                   }                   
+                   }
                }
-           }  	   
+           }
     }
 }

@@ -5,16 +5,16 @@ import java.io.File;
 public class PrivateKeyInfo {
     /**
      * @parameter
-     */    
+     */
 	public File path;
-	
+
     /**
      * @parameter
      */
-    public String password;    
-    
+    public String password;
+
     /**
      * @parameter
      */
-    public String alias;    
+    public String alias;
 }

@@ -16,41 +16,41 @@ import org.jvending.masa.CommandExecutor;
 import org.jvending.masa.ExecutionException;
 
 /**
- * 
+ *
  * @goal link
  * @requiresProject true
- * 
+ *
  * @phase generate-sources
  */
 public class ResourceLinkerMojo extends AbstractMojo {
-    
+
 	/**
      * The maven project.
-     * 
+     *
      * @parameter expression="${project}"
      */
     public MavenProject project;
-    
+
     /**
      * @parameter
      */
     public String[] resourceFolders;
-    
+
     private HashMap<String, String> fileMap = new HashMap<String, String>();
-    
+
     private String baseResourcesDirName;
-    
+
     private FileOutputStream outputReportStream;
-	
+
 	public void execute() throws MojoExecutionException {
 		if(resourceFolders == null) {
 			return;
 		}
-		
+
 		openPropertyFile();
-		
+
 		baseResourcesDirName = new File(  project.getBasedir(), "resources").getAbsolutePath() + File.separator;
-		 	
+
 		 mapGenericResourceDirectory();
 		 for(String resourceFolder: resourceFolders) {
 			 File resourceDir = new File(  project.getBasedir(), "resources" + File.separator + resourceFolder );
@@ -59,24 +59,24 @@ public class ResourceLinkerMojo extends AbstractMojo {
 			 }
 			 if(!"generic".equals(resourceFolder)) {
 				 mapDeviceResourceDirectory(resourceFolder);
-			 }			 
+			 }
 		 }
 
 		 cleanResourceDirectory();
-		 
+
 		 CommandExecutor executor = CommandExecutor.Factory.createDefaultCommmandExecutor();
 	     executor.setLogger( getLog() );
-	        	     
+
 		 for(Map.Entry<String, String> e : fileMap.entrySet()) {
 			 File targetDir = new File("res", e.getKey());
 			 targetDir.getParentFile().mkdirs();
-			 
+
 			 List<String> commands = new ArrayList<String>();
 			 commands.add("-s");
 			 File sourceFile = new File("resources", e.getValue() + File.separator + e.getKey());;
 			 commands.add(sourceFile.getAbsolutePath());
 			 commands.add(targetDir.getAbsolutePath());
-			 
+
 			// this.getLog().debug(commands.toString());
 			 try
 		        {
@@ -89,11 +89,11 @@ public class ResourceLinkerMojo extends AbstractMojo {
 		        	cleanResourceDirectory();//Unable to link, just get rid of previous links
 		            throw new MojoExecutionException( "", ex );
 		        }
-		        
+
 		 }
 		 closePropertyFile();
 	}
-	
+
 	private void writeToPropertyFile(String key, String value) {
 		try {
 			outputReportStream.write( (key + " = " + value + "\r\n").getBytes());
@@ -101,11 +101,11 @@ public class ResourceLinkerMojo extends AbstractMojo {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void openPropertyFile() {
 		/*
 		File targetDir = new File(project.getBuild().getDirectory());
-		
+
 		if(!targetDir.exists()) {
 			targetDir.mkdir();
 		}
@@ -118,16 +118,16 @@ public class ResourceLinkerMojo extends AbstractMojo {
 			outputReportStream = new FileOutputStream( reslinkLog );
 		} catch (FileNotFoundException e) {
 
-		}			
+		}
 	}
-	
+
 	private void closePropertyFile() {
 		try {
 			outputReportStream.close();
 		} catch (IOException e) {
 		}
 	}
-	
+
 	private void cleanResourceDirectory() throws MojoExecutionException {
 		 CommandExecutor executor = CommandExecutor.Factory.createDefaultCommmandExecutor();
 	     executor.setLogger( getLog() );
@@ -142,26 +142,26 @@ public class ResourceLinkerMojo extends AbstractMojo {
 	        catch ( ExecutionException ex )
 	        {
 	            throw new MojoExecutionException( "", ex );
-	        }	     
+	        }
 	}
-	
+
 	private void mapDeviceResourceDirectory(String resourceFolder) throws MojoExecutionException {
 		File resourceDir = new File(  project.getBasedir(), "resources" + File.separator + resourceFolder );
-		addFiles(resourceDir);	
+		addFiles(resourceDir);
 	}
-	
+
 	private void mapGenericResourceDirectory() throws MojoExecutionException {
-		File resourceDir = new File(  project.getBasedir(), "resources" + File.separator + "generic" );	 
+		File resourceDir = new File(  project.getBasedir(), "resources" + File.separator + "generic" );
 		 if(!resourceDir.exists()) {
 			 throw new MojoExecutionException("Generic resource folder does not exist");
-		 }	 
+		 }
 		 addFiles(resourceDir);
 	}
-	
-	private void addFiles(File root) {	
+
+	private void addFiles(File root) {
 		if(root.isDirectory()) {
 			for(File f : root.listFiles()) {
-				addFiles(f);				
+				addFiles(f);
 			}
 		} else {
 			String fragment = root.getAbsolutePath().replace(baseResourcesDirName, "");

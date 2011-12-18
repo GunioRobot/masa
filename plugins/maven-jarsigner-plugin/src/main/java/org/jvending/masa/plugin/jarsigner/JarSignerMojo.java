@@ -38,14 +38,14 @@ public class JarSignerMojo
 
     /**
      * The maven project.
-     * 
+     *
      * @parameter expression="${project}"
      */
     public MavenProject project;
 
     /**
      * Maven ProjectHelper.
-     * 
+     *
      * @component
      * @readonly
      */
@@ -74,7 +74,7 @@ public class JarSignerMojo
     /**
      * @parameter expression="${disableStorepass}" default-value="false"
      */
-    public boolean disableStorepass; 
+    public boolean disableStorepass;
 
     /**
      * @parameter expression="${disableKeypass}" default-value="false"
@@ -118,10 +118,10 @@ public class JarSignerMojo
             commands.add( "-storepass" );
             commands.add( storepass );
         }
-        
+
         commands.add( "-keystore" );
         commands.add( keystore );
-        
+
         String apk = null;
         for ( Artifact a : (List<Artifact>) project.getAttachedArtifacts() )
         {

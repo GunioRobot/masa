@@ -17,7 +17,7 @@ public class MavenITmasa28dAospSignTest
     }
 
     /**
-     * 
+     *
      * @throws Exception
      */
     public void testitA()
@@ -33,5 +33,5 @@ public class MavenITmasa28dAospSignTest
         verifier.resetStreams();
         verifier.assertFilePresent( "target/masa-28d-1.0-signed-aosp.apk" );
     }
- 
+
 }

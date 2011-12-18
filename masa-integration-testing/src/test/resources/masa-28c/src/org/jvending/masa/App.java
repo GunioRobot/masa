@@ -1,4 +1,4 @@
-package org.jvending.masa; 
+package org.jvending.masa;
 
 import android.app.Activity;
 import android.os.Bundle;

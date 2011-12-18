@@ -37,7 +37,7 @@ public class PoResourceMojo extends AbstractMojo {
 
 	/**
 	 * Source directory containing the copied class files.
-	 * 
+	 *
 	 * @parameter expression = "${resourceDirectory}"
 	 *            default-value="${project.basedir}/po"
 	 * @required
@@ -46,7 +46,7 @@ public class PoResourceMojo extends AbstractMojo {
 
 	/**
 	 * Output directory
-	 * 
+	 *
 	 * @parameter expression = "${outputDirectory}"
 	 *            default-value="${project.build.directory}/po"
 	 * @required
@@ -65,7 +65,7 @@ public class PoResourceMojo extends AbstractMojo {
 
 	/**
 	 * The maven project.
-	 * 
+	 *
 	 * @parameter expression="${project}"
 	 * @required
 	 * @readonly

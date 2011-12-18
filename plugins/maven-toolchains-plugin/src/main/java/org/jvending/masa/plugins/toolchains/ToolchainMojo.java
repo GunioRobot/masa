@@ -71,7 +71,7 @@ public class ToolchainMojo
         {
             return;
         }
-   
+
         if(toolchainsFile == null) {
         	//Check if toolchains.xml exists within project directory first
         	toolchainsFile = new File(  project.getBasedir(), "toolchains.xml" );
@@ -79,9 +79,9 @@ public class ToolchainMojo
         	if(!toolchainsFile.exists()) {
         		 toolchainsFile =
                      new File( new File( session.getLocalRepository().getBasedir() ).getParentFile(), "toolchains.xml" );
-        
+
         	}
-        } 
+        }
 
         if ( !toolchainsFile.exists() )
         {

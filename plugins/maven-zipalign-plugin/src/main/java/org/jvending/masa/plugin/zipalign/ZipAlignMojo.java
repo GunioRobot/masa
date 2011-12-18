@@ -17,7 +17,7 @@ import org.jvending.masa.ExecutionException;
 /**
  *
  * @goal align
- * 
+ *
  */
 public class ZipAlignMojo
     extends AbstractMojo
@@ -25,7 +25,7 @@ public class ZipAlignMojo
 
     /**
      * The maven project.
-     * 
+     *
      * @parameter expression="${project}"
      */
     public MavenProject project;
@@ -34,39 +34,39 @@ public class ZipAlignMojo
      * @parameter expression="${session}"
      */
     public MavenSession session;
-    
+
 	/**
      * @parameter default-value="${project.attachedArtifacts}
      * @required
      * @readonly
      */
     private List<Artifact> attachedArtifacts;
-    
+
     /**
      * Maven ProjectHelper.
-     * 
+     *
      * @component
      * @readonly
      */
     private MavenProjectHelper projectHelper;
-    
+
     /**
      * @parameter
      */
     private boolean isVerbose;
-    
+
     /**
      * @parameter default-value="4"
      */
     private int align;
-    
+
     public void execute()
         throws MojoExecutionException
     {
 		File alignedOutputFile = new File(project.getBuild()
 				.getDirectory(), project.getBuild().getFinalName()
 				+ "-signed-aligned.apk");
-		
+
 		CommandExecutor executor = CommandExecutor.Factory
 				.createDefaultCommmandExecutor();
 		executor.setLogger(this.getLog());
@@ -77,7 +77,7 @@ public class ZipAlignMojo
 			commands.add("-v");
 		}
 		commands.add("-f");
-		
+
 		commands.add(String.valueOf(align));
 		for(Artifact artifact : attachedArtifacts) {
 			if("signed".equals(artifact.getClassifier())) {
@@ -95,8 +95,8 @@ public class ZipAlignMojo
 		} catch (ExecutionException e) {
 			throw new MojoExecutionException("", e);
 		}
-		
+
 		projectHelper.attachArtifact( project, "apk", "signed-aligned", alignedOutputFile );
-		
+
     }
 }

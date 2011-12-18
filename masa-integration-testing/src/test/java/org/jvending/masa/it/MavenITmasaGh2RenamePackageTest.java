@@ -18,7 +18,7 @@ public class MavenITmasaGh2RenamePackageTest
 
     /**
      * Tests packaging into pozip
-     * 
+     *
      * @throws Exception
      */
     public void testitA()
@@ -34,5 +34,5 @@ public class MavenITmasaGh2RenamePackageTest
         verifier.resetStreams();
         verifier.assertFilePresent( "target/masa-gh2-1.0.apk" );
     }
- 
+
 }

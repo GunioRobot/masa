@@ -12,7 +12,7 @@
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
 			<version>2.2.1</version>
-		</dependency>	
+		</dependency>
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -28,7 +28,7 @@
 				</groupId>
 				<artifactId>maven-aapt-plugin</artifactId>
 				<extensions>true</extensions>
-			</plugin>	
+			</plugin>
 			<plugin>
 				<groupId>org.jvending.masa.plugins</groupId>
 				<artifactId>maven-apkbuilder-plugin</artifactId>
@@ -43,7 +43,7 @@
 						<password>password</password>
 					</privatekeyInfo>
 				</configuration>
-			</plugin>						
+			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<configuration>
@@ -58,7 +58,7 @@
 					<source>1.5</source>
 					<target>1.5</target>
 				</configuration>
-			</plugin>			
+			</plugin>
 		</plugins>
 	</build>
 </project>

@@ -5,14 +5,14 @@ public class KeystoreInfo {
      * @parameter
      */
     public String path;
-    
+
     /**
      * @parameter
      */
     public String type;
-       
+
     /**
      * @parameter
      */
-    public String password;   
+    public String password;
 }
